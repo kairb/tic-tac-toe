@@ -23,6 +23,7 @@ const App = () => {
 
   useEffect(() => {
     resetGame();
+    //eslint-disable-next-line
   }, [isComputerFirst, isMinimaxMode]);
 
   return (
