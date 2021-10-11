@@ -2,6 +2,7 @@
 
 This project was created to demonstrate the power of graphs and recursive algorithms.
 
+![Screen shot of app](/public/cover.pngraw=true )
 
 
 ## Available Scripts
