@@ -4,17 +4,18 @@ import { move, initBoard, getWinningIndexes, isValidMove } from "./utils";
 import { Switch } from "./Switch";
 
 //todo
-//
+// minimax
 
 const App = () => {
   const [isComputerFirst, setIsComputerFirst] = useState(true);
   const [board, setBoard] = useState(initBoard(isComputerFirst));
   const [winningIndexes, setWinningIndexes] = useState([]);
-  const [isMinimaxMode, setIsMinimaxMode] = useState(true);
+  const [isMinimaxMode, setIsMinimaxMode] = useState(false);
 
   const resetGame = () => {
     setBoard([...initBoard(isComputerFirst)]);
     setWinningIndexes([]);
+    console.log('reseting')
   };
 
   useEffect(() => {
@@ -36,7 +37,7 @@ const App = () => {
               winningIndexes && winningIndexes.includes(index) ? "green" : ""
             }`}
             onClick={() => {
-              if (!winningIndexes && isValidMove(board, index)) {
+              if (winningIndexes !== [] && isValidMove(board, index)) {
                 setBoard(move(board, index, isMinimaxMode));
               }
             }}

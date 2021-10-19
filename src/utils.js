@@ -1,11 +1,17 @@
 export const move = (board, index, isMinimaxMode) => {
-  const tempBoard = [...board];
-  tempBoard[index] = "X";
+  const tempBoard = placeSymbol(board, index, "X")
   if (isMinimaxMode) {
-    return [...minimax(tempBoard)];
+    const score = minimax(tempBoard, false)
+    console.log(score)
+    return [...tempBoard];
   }
   return [...makeRandomMove(tempBoard, "O")];
 };
+
+export const placeSymbol = (board, index, symbol) => {
+  board[index] = symbol;
+  return [...board]
+}
 
 export const isValidMove = (board, index) => {
   return board[index] === "";
@@ -68,7 +74,7 @@ export const getWinningIndexes = (board) => {
     return [2, 4, 6];
   }
 
-  return null;
+  return [];
 };
 
 export const getAvailableMoves = (board) => {
@@ -87,6 +93,9 @@ export const initBoard = (isComputerFirst) => {
 };
 
 export const makeRandomMove = (board, symbol) => {
+  if(getWinningIndexes(board).length > 0){
+    return [...board];
+  }
   const tempBoard = [...board];
   const availableMoves = getAvailableMoves(tempBoard);
   const randomIndex = Math.floor(Math.random() * availableMoves.length);
@@ -94,6 +103,23 @@ export const makeRandomMove = (board, symbol) => {
   return [...tempBoard];
 };
 
-export const minimax = (board) => {
-  return [...board];
+export const minimax = (board, minimising) => {
+  // let score = 0;
+  // if(getWinningIndexes(board).length > 0){
+  //   if(minimising){
+  //     return -1;
+  //   }else{
+  //     return +1;
+  //   }
+  // }
+  
+  // const availableMoves = getAvailableMoves(board);
+
+  // if(availableMoves.length > 0){
+  //   availableMoves.forEach((_v, index) => {
+  //     score += minimax(placeSymbol(board,index,"O"), !minimising)
+  //     // minimax(board )
+  //   });
+  // }
+  // return score;
 };
