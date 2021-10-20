@@ -15,7 +15,6 @@ const App = () => {
   const resetGame = () => {
     setBoard([...initBoard(isComputerFirst)]);
     setWinningIndexes([]);
-    console.log('reseting')
   };
 
   useEffect(() => {
@@ -37,7 +36,7 @@ const App = () => {
               winningIndexes && winningIndexes.includes(index) ? "green" : ""
             }`}
             onClick={() => {
-              if (winningIndexes !== [] && isValidMove(board, index)) {
+              if (winningIndexes.length < 1 && isValidMove(board, index)) {
                 setBoard(move(board, index, isMinimaxMode));
               }
             }}
